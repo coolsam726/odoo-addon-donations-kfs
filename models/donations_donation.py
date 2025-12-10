@@ -14,6 +14,7 @@ class DonationsDonation(models.Model):
 
     kfs_state = fields.Selection(
         string='KFS State',
+        related='kfs_journal_ids.state',
         compute='_compute_kfs_state',
         help='The KFS state of the donation based on associated KFS Journals.'
     )
