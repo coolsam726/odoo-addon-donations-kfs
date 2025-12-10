@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--        Inherit kfs journal form -->
+        <record id="view_kfs_journal_form_inherit_donations" model="ir.ui.view">
+            <field name="name">kfs.journal.form.inherit.donations</field>
+            <field name="model">kfs.journal</field>
+            <field name="inherit_id" ref="kfs_strathmore.view_kfs_journal_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='source_document']" position="after">
+                    <field name="donation_id" readonly="1" invisible="source_document !='donations'"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
