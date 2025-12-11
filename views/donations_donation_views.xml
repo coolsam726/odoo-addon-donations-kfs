@@ -49,5 +49,22 @@
                 </xpath>
             </field>
         </record>
+
+<!--        Extend the List view -->
+        <record id="view_donations_donation_tree_inherit_kfs" model="ir.ui.view">
+            <field name="name">donations.donation.tree.inherit.kfs</field>
+            <field name="model">donations.donation</field>
+            <field name="inherit_id" ref="donations.view_donations_donation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="kfs_state" widget="badge"
+                           decoration-warning="kfs_state == 'scheduled'"
+                           decoration-info="kfs_state == 'draft'"
+                           decoration-success="kfs_state == 'posted'"
+                           decoration-danger="kfs_state in ['failed', 'cancelled']"
+                    />
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>
