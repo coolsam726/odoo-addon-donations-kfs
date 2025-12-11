@@ -25,19 +25,19 @@ class KfsJournal(models.Model):
         org_doc_number = super()._make_org_doc_number()
         if self.source_document != 'donation':
             return org_doc_number
-        return f"Donation {self.donation_id.name}"
+        return f"{self.donation_id.name}"
 
     def _make_description(self):
         description = super()._make_description()
         if self.source_document != 'donation':
             return description
-        return f"Donation {self.donation_id.name}"
+        return f"General Donation {self.donation_id.name}"
 
     def _make_explanation(self):
         explanation = super()._make_explanation()
         if self.source_document != 'donation':
             return explanation
-        return f"Donation {self.donation_id.name}"
+        return f"General Donation {self.donation_id.name}"
 
     def _make_principal_user(self):
         principal_user = super()._make_principal_user()
