@@ -57,7 +57,7 @@ class DonationsDonation(models.Model):
             'name': 'KFS Journals',
             'type': 'ir.actions.act_window',
             'res_model': 'kfs.journal',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('donation_id', '=', self.id)],
             'context': {'default_donation_id': self.id},
         }
@@ -78,7 +78,7 @@ class DonationsDonation(models.Model):
     def action_create_kfs_journal(self):
         return self._create_kfs_journal()
 
-    def _cron_create_kfs_journal(self):
+    def _cron_create_kfs_journals(self):
         donations = self.search([('state', '=', 'posted')])
         for donation in donations:
             existing_journals = donation.kfs_journal_ids.filtered(lambda kfs: kfs.state not in ['reversed', 'cancelled'])

@@ -15,6 +15,9 @@
         # Views
         "views/donations_donation_views.xml",
         "views/kfs_journal_views.xml",
+
+        # CRON Jobs
+        'data/donations_donation_create_kfs_journals_cron.xml',
     ],
     'installable': True,
     'auto_install': False

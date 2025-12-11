@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-<!--        Extend the form -->
+        <!--        Extend the form -->
         <record id="view_donations_donation_form_inherit_kfs" model="ir.ui.view">
             <field name="name">donations.donation.form.inherit.kfs</field>
             <field name="model">donations.donation</field>
             <field name="inherit_id" ref="donations.view_donations_donation_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//header" position="inside">
-<!--                    Action to create kfs journal -->
+                    <!--                    Action to create kfs journal -->
                     <button name="action_create_kfs_journal"
                             type="object"
                             string="Create KFS Journal"
@@ -18,7 +18,7 @@
                     />
                 </xpath>
                 <xpath expr="//div[@name='button_box']" position="inside">
-<!--                    Add the Kfs Journals magic button -->
+                    <!--                    Add the Kfs Journals magic button -->
                     <button name="button_kfs_journals"
                             type="object"
                             class="oe_stat_button"
@@ -27,6 +27,25 @@
                             invisible="kfs_journals_count == 0">
                         <field name="kfs_journals_count" widget="statinfo" string="KFS Journals"/>
                     </button>
+                </xpath>
+            </field>
+        </record>
+        <!--        Extend the kanban view -->
+        <record id="view_donations_donation_kanban_inherit_kfs" model="ir.ui.view">
+            <field name="name">donations.donation.kanban.inherit.kfs</field>
+            <field name="model">donations.donation</field>
+            <field name="inherit_id" ref="donations.view_donations_donation_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='states_outer_container']" position="inside">
+                    <div invisible="not kfs_state" name="kfs_state_container">
+                        <strong>KFS Status:</strong>
+                        <field name="kfs_state" widget="badge"
+                               decoration-warning="kfs_state == 'scheduled'"
+                               decoration-info="kfs_state == 'draft'"
+                               decoration-success="kfs_state == 'posted'"
+                               decoration-danger="kfs_state in ['failed', 'cancelled']"
+                        />
+                    </div>
                 </xpath>
             </field>
         </record>
